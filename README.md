@@ -52,8 +52,8 @@ This is software is still under development. It currently only supports:
 - Turtle output
 
 It additionally supports:
--TDB data sources
--SPARQL data sources
--Jena in-memory data sources
+- TDB data sources
+- SPARQL data sources
+- Jena in-memory data sources
 
 A [more complete server](https://github.com/LinkedDataFragments/Server.js/) has been implemented for the Node.js platform.
