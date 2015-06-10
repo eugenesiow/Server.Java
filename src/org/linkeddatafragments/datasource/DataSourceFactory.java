@@ -28,6 +28,32 @@ public class DataSourceFactory {
                 } catch (IOException ex) {
                     throw new DataSourceException(ex);
                 }
+            case "HdtMemDatasource":
+				File hdtfile = new File(settings.getAsJsonPrimitive("file").getAsString());
+                
+                try {
+                    return new HdtMemDataSource(title, description, hdtfile.getAbsolutePath());
+                } catch (IOException ex) {
+                    throw new DataSourceException(ex);
+                }
+            case "SparqlDataSource":
+            	return new SparqlDataSource(title,description,settings.getAsJsonPrimitive("endpoint").getAsString());
+            case "TdbDatasource":
+            	file = new File(settings.getAsJsonPrimitive("file").getAsString());
+            	
+            	try {
+                    return new TdbDataSource(title,description,file.getAbsolutePath());
+                } catch (IOException ex) {
+                    throw new DataSourceException(ex);
+                }
+            case "JenaMemDatasource": 
+            	File triplesFile = new File(settings.getAsJsonPrimitive("file").getAsString());
+            	
+            	try {
+                    return new JenaMemDataSource(title,description,triplesFile.getAbsolutePath());
+                } catch (IOException ex) {
+                    throw new DataSourceException(ex);
+                }
             default:
                 throw new UnknownDataSourceTypeException(type);
 
